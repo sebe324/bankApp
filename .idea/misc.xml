@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/Uczen/AndroidStudioProjects/TestApp1/app/src/main/res/layout/activity_blik.xml" value="0.25" />
         <entry key="..\:/Users/Uczen/AndroidStudioProjects/TestApp1/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Uczen/bankApp/app/src/main/res/layout/activity_blik.xml" value="0.1" />
+        <entry key="..\:/Users/Uczen/bankApp/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
       </map>
     </option>
   </component>
@@ -13,5 +15,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.3484375" />
+      </ProjectState>
+    </option>
   </component>
 </project>

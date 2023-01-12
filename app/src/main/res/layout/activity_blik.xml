@@ -29,5 +29,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wygeneruj kod blik" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#8F8F8F"
+            android:text="Button"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/Seconds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

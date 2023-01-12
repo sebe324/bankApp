@@ -16,7 +16,7 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private var url = "http://192.168.1.103:8080"
+    private var url = "http://192.168.1.125:8080"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var login=""
