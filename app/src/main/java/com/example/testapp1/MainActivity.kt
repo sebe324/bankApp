@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         val intent = Intent(this, BlikActivity::class.java)
                         intent.putExtra("num",login)
+                        intent.putExtra("password", password)
                         startActivity(intent)
 
                     } catch (e: JSONException) {

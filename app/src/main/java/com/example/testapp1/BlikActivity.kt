@@ -20,6 +20,7 @@ class BlikActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         var url="http://192.168.1.125:8080"
         var num: String = intent.getStringExtra("num").toString()
+        var password: String = intent.getStringExtra("password").toString()
         var blik: String =""
         super.onCreate(savedInstanceState)
         binding=ActivityBlikBinding.inflate(layoutInflater)
@@ -47,7 +48,7 @@ class BlikActivity : AppCompatActivity() {
 
                                     if(status=="to_confirm"){
                                         binding.button2.setVisibility(View.VISIBLE)
-                                        val timer = object: CountDownTimer(120000,1000){
+                                        val timer2 = object: CountDownTimer(120000,1000){
 
                                             override fun onTick(milisUntilFinished: Long){
 
@@ -60,7 +61,7 @@ class BlikActivity : AppCompatActivity() {
                                                 binding.Seconds.setText("");
                                             }
                                         }
-                                        timer.start();
+                                        timer2.start();
                                     }
                                 } catch(e: JSONException){
                                     e.printStackTrace()
@@ -88,7 +89,32 @@ class BlikActivity : AppCompatActivity() {
             requestQueue.add(myRequest)
         }
         binding.button2.setOnClickListener(){
+            val myRequest = StringRequest(
+                Request.Method.POST, url + "/blik/confirm/" + binding.kodBlik.getText()+"/"+password,
+                { response: String? -> try {
+                    binding.button2.setText("Potwierdzono");
 
+                }catch(e: JSONException){
+                    e.printStackTrace()
+                }
+                } ){ volleyError: VolleyError ->
+                var message = Toast.makeText(applicationContext,"cos sie popsulo xd", Toast.LENGTH_SHORT)
+                message.show()
+            }
+            val myRequest2 = StringRequest(
+                Request.Method.GET, url + "/blik/confirm/" + binding.kodBlik.getText()+"/"+password,
+                { response: String? -> try {
+                    binding.button2.setText("Potwierdzono");
+
+                }catch(e: JSONException){
+                    e.printStackTrace()
+                }
+                } ){ volleyError: VolleyError ->
+                var message = Toast.makeText(applicationContext,"cos sie popsulo xd", Toast.LENGTH_SHORT)
+                message.show()
+            }
+            requestQueue.add(myRequest2);
+            requestQueue.add(myRequest);
         }
     }
 }
