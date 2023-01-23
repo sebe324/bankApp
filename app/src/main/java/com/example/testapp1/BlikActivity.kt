@@ -37,31 +37,35 @@ class BlikActivity : AppCompatActivity() {
                         blik=myJsonObject.getString("blik_num")
                         binding.kodBlik.setText(blik)
                         binding.Text.setText("czas trwania kodu")
+                        val timer2 = object: CountDownTimer(120000,1000){
+
+                            override fun onTick(milisUntilFinished: Long){
+
+                                binding.Text.setText("Zaakceptuj kod blik")
+                                binding.Seconds.setText((milisUntilFinished/1000).toString());
+
+                            }
+                            override fun onFinish() {
+                                binding.Text.setText("Kod nie zostal zaakceptowany!")
+                                binding.Seconds.setText("");
+                            }
+                        }
                         val timer = object: CountDownTimer(120000,1000){
 
                             override fun onTick(milisUntilFinished: Long){
-                                binding.Seconds.setText((milisUntilFinished/1000).toString());
                                 val checkConfirm=StringRequest(Request.Method.GET, url+"/blik/check-status/"+blik,{
                                         response: String? -> try{
                                     var status :String = response.toString()
                                     Log.d("message",status)
-
+                                    if(status=="active"){binding.Seconds.setText((milisUntilFinished/1000).toString())}
                                     if(status=="to_confirm"){
+                                        binding.button2.setText("Potwierdź kod")
                                         binding.button2.setVisibility(View.VISIBLE)
-                                        val timer2 = object: CountDownTimer(120000,1000){
-
-                                            override fun onTick(milisUntilFinished: Long){
-
-                                                binding.Text.setText("Zaakceptuj kod blik")
-                                                binding.Seconds.setText((milisUntilFinished/1000).toString());
-
-                                            }
-                                            override fun onFinish() {
-                                                binding.Text.setText("Kod nie zostal zaakceptowany!")
-                                                binding.Seconds.setText("");
-                                            }
-                                        }
                                         timer2.start();
+                                    }
+                                    if(status=="used"){
+                                        binding.Seconds.setText("")
+                                        timer2.cancel();
                                     }
                                 } catch(e: JSONException){
                                     e.printStackTrace()
@@ -73,7 +77,7 @@ class BlikActivity : AppCompatActivity() {
                                 requestQueue.add(checkConfirm)
                             }
                             override fun onFinish() {
-
+                                binding.button2.setText("Kod wygasł")
                             }
                         }
                         timer.start();
